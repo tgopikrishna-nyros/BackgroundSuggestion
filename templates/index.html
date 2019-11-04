@@ -1,0 +1,17 @@
+{% load static %}
+{% include 'partials/header.html' %}
+
+<div class="container" style="background-image: linear-gradient(rgb(102,178,255),rgb(153,255,255,0)); border-color: #66B2FF; border: 2px solid #66B2FF; border-radius: 10px; padding: 0 0 100px 0; margin-top:30px;">
+	<div class="jumbotron" style="background-color: #66b2ff;">
+		<h2 align="center"><strong>Upload image here and check suitable background colors</strong></h2>
+	</div>
+	<div align="center">
+        <form method = "post" enctype="multipart/form-data"> 
+	        {% csrf_token %} 
+	        {{ form.as_p }} 
+	        <button type="submit">Upload</button> 
+   		</form> 		
+	</div>
+</div>
+
+{% include 'partials/footer.html' %}

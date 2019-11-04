@@ -1,0 +1,70 @@
+{% load static %}
+{% include 'partials/header.html' %}
+<!-- Start container -->
+<div class="container" align="center" style="border-color: #66B2FF; border: 2px solid #66B2FF; border-radius: 10px; padding: 0 0 100px 0; margin-top:30px;">
+	<!--Start if -->
+	
+	{% if img %}
+	<div class="row">
+		<div class="col-xs-11" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+			<a href='/background/'><strong style="color:{{ most }}"><<< Try another >>></strong></a><br><br>
+			<img src="/static/{{ img.upload_img }}" width="30%" height="50%" style="border-radius: 50%" class="img-fluid" />
+			<div>
+				<span style="color:{{ most }}"><strong>Most occupied color is:</strong></span>
+				<div style="background-color: {{ most }}; height: 50px; width: 50px;"></div>
+				<span style="color:{{ most }}"><strong>Click on below colors to apply</strong></span>
+			    <div id = "beforeColor" style ="font-size: 16px; font-weight: bold;"></div>
+			    <div id = "firstText" style="display: none;">{{ first }}</div>
+			    <a style="background-color: {{ first }}" class="btn" onclick = "get_first()">{{ first }}</a>
+			    <div id = "secondText" style="display: none;">{{ second }}</div>
+			    <a style="background-color: {{ second }}"  class="btn" onclick = "get_second()">{{ second }}</a>
+			    <div id = "analogous1Text" style="display: none;">{{ analogous1 }}</div>
+			    <a style="background-color: {{ analogous1 }}"  class="btn" onclick = "get_analogous1()">{{ analogous1 }}</a>
+			    <div id = "analogous2Text" style="display: none;">{{ analogous2 }}</div>
+			    <a style="background-color: {{ analogous2 }}"  class="btn" onclick = "get_analogous2()">{{ analogous2 }}</a>
+			    <div id = "afterColor" style ="color:{{ most }}; font-size: 20px; font-weight: bold;"></div>
+   			</div>
+		</div>
+	</div>
+	{% endif %}
+	<!--End if -->
+</div>
+<!--End container -->
+
+<!--Javascript to change background colors -->
+<script> 
+    var before_color = document.getElementById("beforeColor"); 
+    var after_color = document.getElementById("afterColor");
+    var first_text = document.getElementById("firstText").textContent;
+    var second_text = document.getElementById("secondText").textContent;
+    var analogous1_text = document.getElementById("analogous1Text").textContent;
+    var analogous2_text = document.getElementById("analogous2Text").textContent; 
+          
+    function changeColor(color) { 
+    	var x = document.querySelectorAll(".container");
+        x[0].style.background = color;
+    } 
+              
+    function get_first() { 
+        changeColor(first_text); 
+        after_color.innerHTML = "Background Color is "+first_text; 
+    }
+
+    function get_second() { 
+        changeColor(second_text); 
+        after_color.innerHTML = "Background Color is "+second_text; 
+    }
+
+    function get_analogous1() { 
+        changeColor(analogous1_text); 
+        after_color.innerHTML = "Background Color is "+analogous1_text; 
+    }
+
+    function get_analogous2() { 
+        changeColor(analogous2_text); 
+        after_color.innerHTML = "Background Color is "+analogous2_text; 
+    }
+          
+</script>
+
+{% include 'partials/footer.html' %}
